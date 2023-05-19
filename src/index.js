@@ -9,16 +9,16 @@ const port = 3000;
 
 
 app.use(express.static(path.join(__dirname,'public')));
+app.use(express.urlencoded({
+  extended:true
+}));
+app.use(express.json());
 
 // HTTP logger
-app.use(morgan('combined'));
+//app.use(morgan('combined'));
 
 // Template engine
-<<<<<<< HEAD
-app.engine('handlebars', handlebars({ /* options */ }));
-app.set('view engine', 'handlebars');
-app.set('views', path.join(__dirname, 'resources\views'));
-=======
+
 app.engine('hbs', handlebars({
   extname:".hbs"
 }));
@@ -26,7 +26,7 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources\\views'));
 
 //console.log('PATH:  ',path.join(__dirname, 'resources\\views'));
->>>>>>> 2363cf16844d096b736954268f15800f3561b299
+
 
 app.get('/', (req, res) => {
   res.render('home');
@@ -34,6 +34,11 @@ app.get('/', (req, res) => {
 
 app.get('/news-page', (req, res) => {
   res.render('news');
+});
+
+
+app.post('/search', (req, res) => {
+  res.render('search');
 });
 
 app.listen(port, () => {
