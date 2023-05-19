@@ -12,7 +12,7 @@ app.use(morgan('combined'));
 // Template engine
 app.engine('handlebars', handlebars({ /* options */ }));
 app.set('view engine', 'handlebars');
-app.set('views', path.resolve(__dirname, 'resources/views'));
+app.set('views', path.join(__dirname, 'resources\views'));
 
 app.get('/', (req, res) => {
   res.render('home');
