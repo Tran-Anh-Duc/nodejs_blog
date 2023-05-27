@@ -6,7 +6,7 @@ const handlebars = require('express-handlebars');
 
 const app = express();
 const port = 3000;
-
+const route = require('./routes');
 
 app.use(express.static(path.join(__dirname,'public')));
 app.use(express.urlencoded({
@@ -27,19 +27,8 @@ app.set('views', path.join(__dirname, 'resources\\views'));
 
 //console.log('PATH:  ',path.join(__dirname, 'resources\\views'));
 
-
-app.get('/', (req, res) => {
-  res.render('home');
-});
-
-app.get('/news-page', (req, res) => {
-  res.render('news');
-});
-
-
-app.post('/search', (req, res) => {
-  res.render('search');
-});
+// route init
+route(app);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
